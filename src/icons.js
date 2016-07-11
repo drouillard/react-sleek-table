@@ -1,17 +1,23 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 class FaIcon extends Component {
-  static propTypes = {
-    icon: PropTypes.string.isRequired
+  static get propTypes() {
+    return {
+      icon: PropTypes.string.isRequired,
+      style: PropTypes.string,
+    };
   }
 
   render() {
-    const className = `fa fa-lg ${this.props.icon}`
+    const { icon, style } = this.props;
+    const className = `fa fa-lg ${icon}`;
+
     return (
       <i
         className={className}
-        style={this.props.style}
-        align="right" />
+        style={style}
+        align="right"
+      />
     );
   }
 }
