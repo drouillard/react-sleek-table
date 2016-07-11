@@ -1,40 +1,20 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import SortableTableHeader from './sortable-table-header';
 import SortableTableBody from './sortable-table-body';
+import SortDirection from './SortDirection';
 
 export default class SortableTable extends Component {
-  static propTypes = {
-    data: PropTypes.array.isRequired,
-    columns: PropTypes.array.isRequired,
-    style: PropTypes.object,
-    iconStyle: PropTypes.object,
-    iconDesc: PropTypes.node,
-    iconAsc: PropTypes.node,
-    iconBoth: PropTypes.node
-  }
 
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state =  {
-      sortings: this.getDefaultSortings(props)
+    this.state = {
+      sortings: this.getDefaultSortings(props),
     };
   }
 
   getDefaultSortings(props) {
-    return props.columns.map((column) => {
-      let sorting = "both";
-      if (column.defaultSorting) {
-        const defaultSorting = column.defaultSorting.toLowerCase();
-
-        if (defaultSorting == "desc") {
-          sorting = "desc";
-        } else if (defaultSorting == "asc") {
-          sorting = "asc";
-        }
-      }
-      return sorting;
-    });
+    return props.columns.map(column => (column.defaultSorting ? column.defaultSorting : undefined));
   }
 
   sortData(data, sortings) {
@@ -44,7 +24,7 @@ export default class SortableTable extends Component {
       const column = this.props.columns[i];
       const key = this.props.columns[i].key;
       switch (sorting) {
-        case "desc":
+        case SortingDirection.DESC:
           if (column.descSortFunction &&
               typeof(column.descSortFunction) == "function") {
           sortedData = column.descSortFunction(sortedData, key);
@@ -52,7 +32,7 @@ export default class SortableTable extends Component {
           sortedData = this.descSortData(sortedData, key);
         }
         break;
-        case "asc":
+        case SortingDirection.ASC:
           if (column.ascSortFunction &&
               typeof(column.ascSortFunction) == "function") {
           sortedData = column.ascSortFunction(sortedData, key);
@@ -66,17 +46,20 @@ export default class SortableTable extends Component {
   }
 
   ascSortData(data, key) {
-    return this.sortDataByKey(data, key, ((a, b) => {
-      if ( this.parseFloatable(a) && this.parseFloatable(b) ) {
+    return this.sortDataByKey(data, key, (_a, _b) => {
+      let a = _a;
+      let b = _b;
+
+      if (this.parseFloatable(a) && this.parseFloatable(b)) {
         a = this.parseIfFloat(a);
         b = this.parseIfFloat(b);
       }
-      if ( a >= b ) {
+      if (a >= b) {
         return 1;
-      } else if ( a < b) {
-        return -1;
       }
-    }).bind(this));
+
+      return -1;
+    });
   }
 
   descSortData(data, key) {
@@ -94,11 +77,11 @@ export default class SortableTable extends Component {
   }
 
   parseFloatable(value) {
-    return ( typeof(value) === "string" && ( /^\d+$/.test(value) || /^\d+$/.test(value.replace(/[,.%$]/g, "")) ) ) ? true : false;
+    return typeof(value) === 'string' && (/^\d+$/.test(value) || /^\d+$/.test(value.replace(/[,.%$]/g, '')));
   }
 
   parseIfFloat(value) {
-    return parseFloat(value.replace(/,/g, ""));
+    return parseFloat(value.replace(/,/g, ''));
   }
 
   sortDataByKey(data, key, fn) {
@@ -111,9 +94,12 @@ export default class SortableTable extends Component {
 
   onStateChange(index) {
     const sortings = this.state.sortings.map(((sorting, i) => {
-      if (i == index)
+      if (i == index) {
         sorting = this.nextSortingState(sorting);
-
+      } else {
+        // reset sorting
+        sorting = undefined;
+      }
       return sorting;
     }).bind(this));
 
@@ -123,19 +109,13 @@ export default class SortableTable extends Component {
   }
 
   nextSortingState(state) {
-    let next;
-    switch (state) {
-      case "both":
-        next = "desc";
-      break;
-      case "desc":
-        next = "asc";
-      break;
-      case "asc":
-        next= "both"
-      break;
+    if(!state) {
+      return SortDirection.DESC;
+    } else if (state === SortDirection.DESC) {
+      return SortDirection.ASC;
     }
-    return next;
+
+    return undefined;
   }
 
   render() {
@@ -160,4 +140,14 @@ export default class SortableTable extends Component {
       </table>
     );
   }
+}
+
+SortableTable.propTypes = {
+  data: PropTypes.array.isRequired,
+  columns: PropTypes.array.isRequired,
+  style: PropTypes.object,
+  iconStyle: PropTypes.object,
+  iconDesc: PropTypes.node,
+  iconAsc: PropTypes.node,
+  iconBoth: PropTypes.node
 }
