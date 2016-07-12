@@ -33,12 +33,11 @@ class App extends Component {
     super();
     this.state = {
       data: [
-        { id: 5, name: 'Nobuo Yamamoto', class: 'D' },
         { id: 3, name: 'Satoshi Yamamoto', class: 'B' },
         { id: 1, name: 'Taro Tanak', class: 'A' },
         { id: 2, name: 'Ken Asada', class: 'A' },
+        { id: 5, name: 'Nobuo Yamamoto', class: 'D' },
         { id: 4, name: 'Masaru Tokunaga', class: 'C' },
-
       ],
     };
   }

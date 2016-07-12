@@ -2,21 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import SortableTableHeaderItem from './SortableTableHeaderItem';
 
 export default class SortableTableHeader extends Component {
-  constructor() {
-    super();
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(index) {
-    const { onStateChange } = this.props;
-    onStateChange(index);
-  }
 
   render() {
-    const { iconBoth, iconAsc, iconDesc, iconStyle } = this.props;
+    const { columns, iconBoth, iconAsc, iconDesc,
+            iconStyle, onHeaderItemClick, sortings } = this.props;
 
-    const headers = this.props.columns.map(((column, index) => {
-      const sorting = this.props.sortings[index];
+    const headers = columns.map(((column, index) => {
+      const sorting = sortings[index];
       return (
         <SortableTableHeaderItem
           sortable={column.sortable}
@@ -24,7 +16,7 @@ export default class SortableTableHeader extends Component {
           index={index}
           header={column.header}
           sorting={sorting}
-          onClick={this.onClick}
+          onClick={onHeaderItemClick}
           style={column.headerStyle}
           headerProps={column.headerProps}
           iconStyle={iconStyle}
@@ -48,7 +40,7 @@ export default class SortableTableHeader extends Component {
 SortableTableHeader.propTypes = {
   columns: PropTypes.array.isRequired,
   sortings: PropTypes.array.isRequired,
-  onStateChange: PropTypes.func,
+  onHeaderItemClick: PropTypes.func,
   iconStyle: PropTypes.object,
   iconDesc: PropTypes.node,
   iconAsc: PropTypes.node,

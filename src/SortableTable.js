@@ -15,10 +15,14 @@ export default class SortableTable extends Component {
     this.sortData = this.sortData.bind(this);
     this.ascSortData = this.ascSortData.bind(this);
     this.descSortData = this.descSortData.bind(this);
-    this.onStateChange = this.onStateChange.bind(this);
+    this.handleHeaderItemClick = this.handleHeaderItemClick.bind(this);
   }
 
-  onStateChange(index) {
+  getDefaultSortings(props) {
+    return props.columns.map(column => (column.defaultSorting ? column.defaultSorting : undefined));
+  }
+
+  handleHeaderItemClick(index) {
     const sortings = this.state.sortings.map(((sorting, i) => (
       i === index ? this.nextSortingState(sorting) : undefined
     )));
@@ -28,12 +32,8 @@ export default class SortableTable extends Component {
     });
   }
 
-  getDefaultSortings(props) {
-    return props.columns.map(column => (column.defaultSorting ? column.defaultSorting : undefined));
-  }
-
   sortData(data, sortings) {
-    let { data: sortedData } = this.props;
+    let sortedData = this.props.data.slice(0);
 
     sortings.forEach((sorting, i) => {
       const column = this.props.columns[i];
@@ -105,9 +105,9 @@ export default class SortableTable extends Component {
 
   nextSortingState(state) {
     if (!state) {
-      return SortDirection.DESC;
-    } else if (state === SortDirection.DESC) {
       return SortDirection.ASC;
+    } else if (state === SortDirection.ASC) {
+      return SortDirection.DESC;
     }
 
     return undefined;
@@ -126,7 +126,7 @@ export default class SortableTable extends Component {
         <SortableTableHeader
           columns={columns}
           sortings={sortings}
-          onStateChange={this.onStateChange}
+          onHeaderItemClick={this.handleHeaderItemClick}
           iconStyle={iconStyle}
           iconDesc={iconDesc}
           iconAsc={iconAsc}
@@ -137,7 +137,6 @@ export default class SortableTable extends Component {
           data={sortedData}
           sortings={sortings}
         />
-
       </table>
     );
   }

@@ -64,7 +64,7 @@ export default class SortableTableHeaderItem extends Component {
 SortableTableHeaderItem.propTypes = {
   header: PropTypes.node,
   headerProps: PropTypes.object,
-  onClick: PropTypes.function,
+  onClick: PropTypes.func,
   sortable: PropTypes.bool,
   sorting: PropTypes.oneOf([SortDirection.DESC, SortDirection.ASC, undefined]),
   iconStyle: PropTypes.object,
