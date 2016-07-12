@@ -2,12 +2,19 @@ import React, { Component, PropTypes } from 'react';
 import SortableTableHeaderItem from './SortableTableHeaderItem';
 
 export default class SortableTableHeader extends Component {
+  constructor() {
+    super();
+    this.onClick = this.onClick.bind(this);
+  }
 
   onClick(index) {
-    this.props.onStateChange.bind(this)(index);
+    const { onStateChange } = this.props;
+    onStateChange(index);
   }
 
   render() {
+    const { iconBoth, iconAsc, iconDesc, iconStyle } = this.props;
+
     const headers = this.props.columns.map(((column, index) => {
       const sorting = this.props.sortings[index];
       return (
@@ -20,10 +27,10 @@ export default class SortableTableHeader extends Component {
           onClick={this.onClick}
           style={column.headerStyle}
           headerProps={column.headerProps}
-          iconStyle={this.props.iconStyle}
-          iconDesc={this.props.iconDesc}
-          iconAsc={this.props.iconAsc}
-          iconBoth={this.props.iconBoth}
+          iconStyle={iconStyle}
+          iconDesc={iconDesc}
+          iconAsc={iconAsc}
+          iconBoth={iconBoth}
         />
       );
     }));

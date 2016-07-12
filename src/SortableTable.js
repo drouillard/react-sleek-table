@@ -11,6 +11,11 @@ export default class SortableTable extends Component {
     this.state = {
       sortings: this.getDefaultSortings(props),
     };
+
+    this.sortData = this.sortData.bind(this);
+    this.ascSortData = this.ascSortData.bind(this);
+    this.descSortData = this.descSortData.bind(this);
+    this.onStateChange = this.onStateChange.bind(this);
   }
 
   onStateChange(index) {
@@ -28,7 +33,7 @@ export default class SortableTable extends Component {
   }
 
   sortData(data, sortings) {
-    let sortedData = this.props.data;
+    let { data: sortedData } = this.props;
 
     sortings.forEach((sorting, i) => {
       const column = this.props.columns[i];
@@ -37,7 +42,7 @@ export default class SortableTable extends Component {
       switch (sorting) {
         case SortDirection.DESC:
           if (column.descSortFunction &&
-            typeof(column.descSortFunction) === 'function') {
+          typeof(column.descSortFunction) === 'function') {
             sortedData = column.descSortFunction(sortedData, key);
           } else {
             sortedData = this.descSortData(sortedData, key);
@@ -85,7 +90,7 @@ export default class SortableTable extends Component {
 
   parseFloatable(value) {
     return typeof(value) === 'string' &&
-           (/^\d+$/.test(value) || /^\d+$/.test(value.replace(/[,.%$]/g, '')));
+    (/^\d+$/.test(value) || /^\d+$/.test(value.replace(/[,.%$]/g, '')));
   }
 
   parseIfFloat(value) {
@@ -109,29 +114,32 @@ export default class SortableTable extends Component {
   }
 
   render() {
-    const sortedData = this.sortData(this.props.data, this.state.sortings);
+    const { data, columns, iconAsc, iconBoth, iconDesc, iconStyle, style } = this.props;
+    const { sortings } = this.state;
+    const sortedData = this.sortData(data, sortings);
 
     return (
       <table
         className="table"
-        style={this.props.style}
+        style={style}
       >
         <SortableTableHeader
-          columns={this.props.columns}
-          sortings={this.state.sortings}
+          columns={columns}
+          sortings={sortings}
           onStateChange={this.onStateChange}
-          iconStyle={this.props.iconStyle}
-          iconDesc={this.props.iconDesc}
-          iconAsc={this.props.iconAsc}
-          iconBoth={this.props.iconBoth}
+          iconStyle={iconStyle}
+          iconDesc={iconDesc}
+          iconAsc={iconAsc}
+          iconBoth={iconBoth}
         />
         <SortableTableBody
-          columns={this.props.columns}
+          columns={columns}
           data={sortedData}
-          sortings={this.state.sortings}
+          sortings={sortings}
         />
+
       </table>
-        );
+    );
   }
 }
 

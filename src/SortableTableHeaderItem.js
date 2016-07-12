@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import SortDirection from './SortDirection';
 import { SortIconBoth, SortIconDesc, SortIconAsc } from './SortIcons';
 
-class SortableTableHeaderItem extends Component {
+export default class SortableTableHeaderItem extends Component {
 
   static get defaultProps() {
     return {
@@ -11,10 +11,15 @@ class SortableTableHeaderItem extends Component {
     };
   }
 
-  onClick() {
-    const { index } = this.props;
-    if (this.props.sortable) {
-      this.props.onClick(index);
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const { index, onClick, sortable } = this.props;
+    if (sortable) {
+      onClick(index);
     }
   }
 
@@ -46,7 +51,7 @@ class SortableTableHeaderItem extends Component {
     return (
       <th
         style={style}
-        onClick={this.onClick}
+        onClick={this.handleClick}
         {...this.props.headerProps}
       >
         {header}
@@ -67,5 +72,5 @@ SortableTableHeaderItem.propTypes = {
   iconAsc: PropTypes.node,
   iconBoth: PropTypes.node,
   index: PropTypes.number,
-  style: PropTypes.string,
+  style: PropTypes.object,
 };

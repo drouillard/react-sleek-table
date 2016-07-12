@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-export const SortableTableRow = (props) => {
+const SortableTableRow = (props) => {
   const { columns, data } = props;
 
   const tds = columns.map((item, index) => {
@@ -27,8 +27,9 @@ export const SortableTableRow = (props) => {
   );
 };
 
-
 SortableTableRow.propTypes = {
   columns: PropTypes.array.isRequired,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.object.isRequired,
 };
+
+export default SortableTableRow;

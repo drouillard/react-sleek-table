@@ -13,7 +13,7 @@ export default class SortableTableBody extends Component {
   render() {
     const { columns, data } = this.props;
 
-    const bodies = data.map((item, index) => (
+    const rows = data.map((item, index) => (
       <SortableTableRow
         key={index}
         data={item}
@@ -23,7 +23,7 @@ export default class SortableTableBody extends Component {
 
     return (
       <tbody>
-        {bodies}
+        {rows}
       </tbody>
     );
   }
