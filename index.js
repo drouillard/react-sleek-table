@@ -1,1 +1,1 @@
-module.exports = require("./js/sortable-table");
+module.exports = require('./js/SortableTable');

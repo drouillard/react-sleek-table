@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import SortDirection from './SortDirection';
-import { SortIconBoth, SortIconDesc, SortIconAsc } from './icons';
+import { SortIconBoth, SortIconDesc, SortIconAsc } from './SortIcons';
 
 class SortableTableHeaderItem extends Component {
 
