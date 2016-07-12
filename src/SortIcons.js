@@ -15,7 +15,7 @@ export const FaIcon = (props) => {
 
 FaIcon.propTypes = {
   icon: PropTypes.string.isRequired,
-  style: PropTypes.string,
+  style: PropTypes.object,
 };
 
 export const SortIconAsc = (props) => (
@@ -23,7 +23,7 @@ export const SortIconAsc = (props) => (
 );
 
 SortIconAsc.propTypes = {
-  style: PropTypes.string,
+  style: PropTypes.object,
 };
 
 export const SortIconDesc = (props) => (
@@ -31,7 +31,7 @@ export const SortIconDesc = (props) => (
 );
 
 SortIconDesc.propTypes = {
-  style: PropTypes.string,
+  style: PropTypes.object,
 };
 
 export const SortIconBoth = (props) => (
@@ -39,5 +39,5 @@ export const SortIconBoth = (props) => (
 );
 
 SortIconBoth.propTypes = {
-  style: PropTypes.string,
+  style: PropTypes.object,
 };
