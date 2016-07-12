@@ -1,65 +1,49 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import SortDirection from './SortDirection';
 import { SortIconBoth, SortIconDesc, SortIconAsc } from './SortIcons';
 
-export default class SortableTableHeaderItem extends Component {
+const SortableTableHeaderItem = (props = {}) => {
+  const { header, iconAsc, iconBoth, iconDesc,
+            iconStyle, index, onClick, sortable, sorting, style } = props;
 
-  static get defaultProps() {
-    return {
-      headerProps: {},
-      sortable: true,
-    };
-  }
-
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    const { index, onClick, sortable } = this.props;
-    if (sortable) {
-      onClick(index);
+  let sortIcon;
+  if (sortable) {
+    if (iconBoth) {
+      sortIcon = iconBoth;
+    } else {
+      sortIcon = <SortIconBoth style={iconStyle} />;
     }
-  }
-
-  render() {
-    const { header, iconAsc, iconBoth, iconDesc, iconStyle, sortable, sorting, style } = this.props;
-
-    let sortIcon;
-    if (sortable) {
-      if (iconBoth) {
-        sortIcon = iconBoth;
+    if (sorting === SortDirection.DESC) {
+      if (iconDesc) {
+        sortIcon = iconDesc;
       } else {
-        sortIcon = <SortIconBoth style={iconStyle} />;
+        sortIcon = <SortIconDesc style={iconStyle} />;
       }
-      if (sorting === SortDirection.DESC) {
-        if (iconDesc) {
-          sortIcon = iconDesc;
-        } else {
-          sortIcon = <SortIconDesc style={iconStyle} />;
-        }
-      } else if (sorting === SortDirection.ASC) {
-        if (iconAsc) {
-          sortIcon = iconAsc;
-        } else {
-          sortIcon = <SortIconAsc style={iconStyle} />;
-        }
+    } else if (sorting === SortDirection.ASC) {
+      if (iconAsc) {
+        sortIcon = iconAsc;
+      } else {
+        sortIcon = <SortIconAsc style={iconStyle} />;
       }
     }
-
-    return (
-      <th
-        style={style}
-        onClick={this.handleClick}
-        {...this.props.headerProps}
-      >
-        {header}
-        {sortIcon}
-      </th>
-    );
   }
-}
+
+  return (
+    <th
+      style={style}
+      onClick={() => { if (sortable) { onClick(index); } }}
+      {...props.headerProps}
+    >
+      {header}
+      {sortIcon}
+    </th>
+  );
+};
+
+SortableTableHeaderItem.defaultProps = {
+  headerProps: {},
+  sortable: true,
+};
 
 SortableTableHeaderItem.propTypes = {
   header: PropTypes.node,
@@ -74,3 +58,5 @@ SortableTableHeaderItem.propTypes = {
   index: PropTypes.number,
   style: PropTypes.object,
 };
+
+export default SortableTableHeaderItem;

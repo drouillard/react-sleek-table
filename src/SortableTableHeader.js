@@ -1,41 +1,38 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import SortableTableHeaderItem from './SortableTableHeaderItem';
 
-export default class SortableTableHeader extends Component {
+const SortableTableHeader = (props = {}) => {
+  const { columns, iconBoth, iconAsc, iconDesc,
+    iconStyle, onHeaderItemClick, sortings } = props;
 
-  render() {
-    const { columns, iconBoth, iconAsc, iconDesc,
-            iconStyle, onHeaderItemClick, sortings } = this.props;
-
-    const headers = columns.map(((column, index) => {
-      const sorting = sortings[index];
-      return (
-        <SortableTableHeaderItem
-          sortable={column.sortable}
-          key={index}
-          index={index}
-          header={column.header}
-          sorting={sorting}
-          onClick={onHeaderItemClick}
-          style={column.headerStyle}
-          headerProps={column.headerProps}
-          iconStyle={iconStyle}
-          iconDesc={iconDesc}
-          iconAsc={iconAsc}
-          iconBoth={iconBoth}
-        />
-      );
-    }));
-
+  const headers = columns.map(((column, index) => {
+    const sorting = sortings[index];
     return (
-      <thead>
-        <tr>
-          {headers}
-        </tr>
-      </thead>
+      <SortableTableHeaderItem
+        sortable={column.sortable}
+        key={index}
+        index={index}
+        header={column.header}
+        sorting={sorting}
+        onClick={onHeaderItemClick}
+        style={column.headerStyle}
+        headerProps={column.headerProps}
+        iconStyle={iconStyle}
+        iconDesc={iconDesc}
+        iconAsc={iconAsc}
+        iconBoth={iconBoth}
+      />
     );
-  }
-}
+  }));
+
+  return (
+    <thead>
+      <tr>
+        {headers}
+      </tr>
+    </thead>
+  );
+};
 
 SortableTableHeader.propTypes = {
   columns: PropTypes.array.isRequired,
@@ -46,3 +43,5 @@ SortableTableHeader.propTypes = {
   iconAsc: PropTypes.node,
   iconBoth: PropTypes.node,
 };
+
+export default SortableTableHeader;

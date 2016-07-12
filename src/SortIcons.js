@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-export const FaIcon = (props) => {
+export const FaIcon = (props = {}) => {
   const { icon, style } = props;
   const className = `fa fa-lg ${icon}`;
 
@@ -18,7 +18,7 @@ FaIcon.propTypes = {
   style: PropTypes.object,
 };
 
-export const SortIconAsc = (props) => (
+export const SortIconAsc = (props = {}) => (
   <FaIcon icon="fa-sort-asc" style={props.style} />
 );
 
@@ -26,7 +26,7 @@ SortIconAsc.propTypes = {
   style: PropTypes.object,
 };
 
-export const SortIconDesc = (props) => (
+export const SortIconDesc = (props = {}) => (
   <FaIcon icon="fa-sort-desc" style={props.style} />
 );
 
@@ -34,7 +34,7 @@ SortIconDesc.propTypes = {
   style: PropTypes.object,
 };
 
-export const SortIconBoth = (props) => (
+export const SortIconBoth = (props = {}) => (
   <FaIcon icon="fa-sort" style={props.style} />
 );
 

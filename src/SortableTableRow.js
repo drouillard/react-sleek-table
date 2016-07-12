@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const SortableTableRow = (props) => {
+const SortableTableRow = (props = {}) => {
   const { columns, data } = props;
 
   const tds = columns.map((item, index) => {

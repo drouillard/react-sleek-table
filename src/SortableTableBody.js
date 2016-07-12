@@ -1,35 +1,33 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import SortableTableRow from './SortableTableRow';
 
-export default class SortableTableBody extends Component {
-  static get defaultProps() {
-    return {
-      data: PropTypes.array.isRequired,
-      columns: PropTypes.array.isRequired,
-      sortings: PropTypes.array.isRequired,
-    };
-  }
+const SortableTableBody = (props = {}) => {
+  const { columns, data } = props;
 
-  render() {
-    const { columns, data } = this.props;
+  const rows = data.map((item, index) => (
+    <SortableTableRow
+      key={index}
+      data={item}
+      columns={columns}
+    />
+  ));
 
-    const rows = data.map((item, index) => (
-      <SortableTableRow
-        key={index}
-        data={item}
-        columns={columns}
-      />
-    ));
+  return (
+    <tbody>
+      {rows}
+    </tbody>
+  );
+};
 
-    return (
-      <tbody>
-        {rows}
-      </tbody>
-    );
-  }
-}
+SortableTableBody.defaultProps = {
+  data: PropTypes.array.isRequired,
+  columns: PropTypes.array.isRequired,
+  sortings: PropTypes.array.isRequired,
+};
 
 SortableTableBody.propTypes = {
   columns: PropTypes.array,
   data: PropTypes.array,
 };
+
+export default SortableTableBody;
