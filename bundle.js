@@ -20034,8 +20034,6 @@
 	  value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(147);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -20046,69 +20044,45 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var SortableTableHeader = function (_Component) {
-	  _inherits(SortableTableHeader, _Component);
-
-	  function SortableTableHeader() {
-	    _classCallCheck(this, SortableTableHeader);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SortableTableHeader).apply(this, arguments));
-	  }
-
-	  _createClass(SortableTableHeader, [{
-	    key: 'render',
-	    value: function render() {
-	      var _props = this.props;
-	      var columns = _props.columns;
-	      var iconBoth = _props.iconBoth;
-	      var iconAsc = _props.iconAsc;
-	      var iconDesc = _props.iconDesc;
-	      var iconStyle = _props.iconStyle;
-	      var onHeaderItemClick = _props.onHeaderItemClick;
-	      var sortings = _props.sortings;
+	var SortableTableHeader = function SortableTableHeader() {
+	  var props = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var columns = props.columns;
+	  var iconBoth = props.iconBoth;
+	  var iconAsc = props.iconAsc;
+	  var iconDesc = props.iconDesc;
+	  var iconStyle = props.iconStyle;
+	  var onHeaderItemClick = props.onHeaderItemClick;
+	  var sortings = props.sortings;
 
 
-	      var headers = columns.map(function (column, index) {
-	        var sorting = sortings[index];
-	        return _react2.default.createElement(_SortableTableHeaderItem2.default, {
-	          sortable: column.sortable,
-	          key: index,
-	          index: index,
-	          header: column.header,
-	          sorting: sorting,
-	          onClick: onHeaderItemClick,
-	          style: column.headerStyle,
-	          headerProps: column.headerProps,
-	          iconStyle: iconStyle,
-	          iconDesc: iconDesc,
-	          iconAsc: iconAsc,
-	          iconBoth: iconBoth
-	        });
-	      });
+	  var headers = columns.map(function (column, index) {
+	    var sorting = sortings[index];
+	    return _react2.default.createElement(_SortableTableHeaderItem2.default, {
+	      sortable: column.sortable,
+	      key: index,
+	      index: index,
+	      header: column.header,
+	      sorting: sorting,
+	      onClick: onHeaderItemClick,
+	      style: column.headerStyle,
+	      headerProps: column.headerProps,
+	      iconStyle: iconStyle,
+	      iconDesc: iconDesc,
+	      iconAsc: iconAsc,
+	      iconBoth: iconBoth
+	    });
+	  });
 
-	      return _react2.default.createElement(
-	        'thead',
-	        null,
-	        _react2.default.createElement(
-	          'tr',
-	          null,
-	          headers
-	        )
-	      );
-	    }
-	  }]);
-
-	  return SortableTableHeader;
-	}(_react.Component);
-
-	exports.default = SortableTableHeader;
-
+	  return _react2.default.createElement(
+	    'thead',
+	    null,
+	    _react2.default.createElement(
+	      'tr',
+	      null,
+	      headers
+	    )
+	  );
+	};
 
 	SortableTableHeader.propTypes = {
 	  columns: _react.PropTypes.array.isRequired,
@@ -20119,6 +20093,8 @@
 	  iconAsc: _react.PropTypes.node,
 	  iconBoth: _react.PropTypes.node
 	};
+
+	exports.default = SortableTableHeader;
 
 /***/ },
 /* 162 */
@@ -20132,8 +20108,6 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(147);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -20146,99 +20120,61 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var SortableTableHeaderItem = function SortableTableHeaderItem() {
+	  var props = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var header = props.header;
+	  var iconAsc = props.iconAsc;
+	  var iconBoth = props.iconBoth;
+	  var iconDesc = props.iconDesc;
+	  var iconStyle = props.iconStyle;
+	  var index = props.index;
+	  var _onClick = props.onClick;
+	  var sortable = props.sortable;
+	  var sorting = props.sorting;
+	  var style = props.style;
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var SortableTableHeaderItem = function (_Component) {
-	  _inherits(SortableTableHeaderItem, _Component);
-
-	  _createClass(SortableTableHeaderItem, null, [{
-	    key: 'defaultProps',
-	    get: function get() {
-	      return {
-	        headerProps: {},
-	        sortable: true
-	      };
+	  var sortIcon = void 0;
+	  if (sortable) {
+	    if (iconBoth) {
+	      sortIcon = iconBoth;
+	    } else {
+	      sortIcon = _react2.default.createElement(_SortIcons.SortIconBoth, { style: iconStyle });
 	    }
-	  }]);
-
-	  function SortableTableHeaderItem() {
-	    _classCallCheck(this, SortableTableHeaderItem);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SortableTableHeaderItem).call(this));
-
-	    _this.handleClick = _this.handleClick.bind(_this);
-	    return _this;
+	    if (sorting === _SortDirection2.default.DESC) {
+	      if (iconDesc) {
+	        sortIcon = iconDesc;
+	      } else {
+	        sortIcon = _react2.default.createElement(_SortIcons.SortIconDesc, { style: iconStyle });
+	      }
+	    } else if (sorting === _SortDirection2.default.ASC) {
+	      if (iconAsc) {
+	        sortIcon = iconAsc;
+	      } else {
+	        sortIcon = _react2.default.createElement(_SortIcons.SortIconAsc, { style: iconStyle });
+	      }
+	    }
 	  }
 
-	  _createClass(SortableTableHeaderItem, [{
-	    key: 'handleClick',
-	    value: function handleClick() {
-	      var _props = this.props;
-	      var index = _props.index;
-	      var onClick = _props.onClick;
-	      var sortable = _props.sortable;
-
-	      if (sortable) {
-	        onClick(index);
-	      }
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _props2 = this.props;
-	      var header = _props2.header;
-	      var iconAsc = _props2.iconAsc;
-	      var iconBoth = _props2.iconBoth;
-	      var iconDesc = _props2.iconDesc;
-	      var iconStyle = _props2.iconStyle;
-	      var sortable = _props2.sortable;
-	      var sorting = _props2.sorting;
-	      var style = _props2.style;
-
-
-	      var sortIcon = void 0;
-	      if (sortable) {
-	        if (iconBoth) {
-	          sortIcon = iconBoth;
-	        } else {
-	          sortIcon = _react2.default.createElement(_SortIcons.SortIconBoth, { style: iconStyle });
-	        }
-	        if (sorting === _SortDirection2.default.DESC) {
-	          if (iconDesc) {
-	            sortIcon = iconDesc;
-	          } else {
-	            sortIcon = _react2.default.createElement(_SortIcons.SortIconDesc, { style: iconStyle });
-	          }
-	        } else if (sorting === _SortDirection2.default.ASC) {
-	          if (iconAsc) {
-	            sortIcon = iconAsc;
-	          } else {
-	            sortIcon = _react2.default.createElement(_SortIcons.SortIconAsc, { style: iconStyle });
-	          }
+	  return _react2.default.createElement(
+	    'th',
+	    _extends({
+	      style: style,
+	      onClick: function onClick() {
+	        if (sortable) {
+	          _onClick(index);
 	        }
 	      }
+	    }, props.headerProps),
+	    header,
+	    sortIcon
+	  );
+	};
 
-	      return _react2.default.createElement(
-	        'th',
-	        _extends({
-	          style: style,
-	          onClick: this.handleClick
-	        }, this.props.headerProps),
-	        header,
-	        sortIcon
-	      );
-	    }
-	  }]);
-
-	  return SortableTableHeaderItem;
-	}(_react.Component);
-
-	exports.default = SortableTableHeaderItem;
-
+	SortableTableHeaderItem.defaultProps = {
+	  headerProps: {},
+	  sortable: true
+	};
 
 	SortableTableHeaderItem.propTypes = {
 	  header: _react.PropTypes.node,
@@ -20253,6 +20189,8 @@
 	  index: _react.PropTypes.number,
 	  style: _react.PropTypes.object
 	};
+
+	exports.default = SortableTableHeaderItem;
 
 /***/ },
 /* 163 */
@@ -20297,7 +20235,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var FaIcon = exports.FaIcon = function FaIcon(props) {
+	var FaIcon = exports.FaIcon = function FaIcon() {
+	  var props = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	  var icon = props.icon;
 	  var style = props.style;
 
@@ -20315,7 +20254,8 @@
 	  style: _react.PropTypes.object
 	};
 
-	var SortIconAsc = exports.SortIconAsc = function SortIconAsc(props) {
+	var SortIconAsc = exports.SortIconAsc = function SortIconAsc() {
+	  var props = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	  return _react2.default.createElement(FaIcon, { icon: "fa-sort-asc", style: props.style });
 	};
 
@@ -20323,7 +20263,8 @@
 	  style: _react.PropTypes.object
 	};
 
-	var SortIconDesc = exports.SortIconDesc = function SortIconDesc(props) {
+	var SortIconDesc = exports.SortIconDesc = function SortIconDesc() {
+	  var props = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	  return _react2.default.createElement(FaIcon, { icon: "fa-sort-desc", style: props.style });
 	};
 
@@ -20331,7 +20272,8 @@
 	  style: _react.PropTypes.object
 	};
 
-	var SortIconBoth = exports.SortIconBoth = function SortIconBoth(props) {
+	var SortIconBoth = exports.SortIconBoth = function SortIconBoth() {
+	  var props = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	  return _react2.default.createElement(FaIcon, { icon: "fa-sort", style: props.style });
 	};
 
@@ -20349,8 +20291,6 @@
 	  value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(147);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -20361,64 +20301,39 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var SortableTableBody = function (_Component) {
-	  _inherits(SortableTableBody, _Component);
-
-	  function SortableTableBody() {
-	    _classCallCheck(this, SortableTableBody);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SortableTableBody).apply(this, arguments));
-	  }
-
-	  _createClass(SortableTableBody, [{
-	    key: 'render',
-	    value: function render() {
-	      var _props = this.props;
-	      var columns = _props.columns;
-	      var data = _props.data;
+	var SortableTableBody = function SortableTableBody() {
+	  var props = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var columns = props.columns;
+	  var data = props.data;
 
 
-	      var rows = data.map(function (item, index) {
-	        return _react2.default.createElement(_SortableTableRow2.default, {
-	          key: index,
-	          data: item,
-	          columns: columns
-	        });
-	      });
+	  var rows = data.map(function (item, index) {
+	    return _react2.default.createElement(_SortableTableRow2.default, {
+	      key: index,
+	      data: item,
+	      columns: columns
+	    });
+	  });
 
-	      return _react2.default.createElement(
-	        'tbody',
-	        null,
-	        rows
-	      );
-	    }
-	  }], [{
-	    key: 'defaultProps',
-	    get: function get() {
-	      return {
-	        data: _react.PropTypes.array.isRequired,
-	        columns: _react.PropTypes.array.isRequired,
-	        sortings: _react.PropTypes.array.isRequired
-	      };
-	    }
-	  }]);
+	  return _react2.default.createElement(
+	    'tbody',
+	    null,
+	    rows
+	  );
+	};
 
-	  return SortableTableBody;
-	}(_react.Component);
-
-	exports.default = SortableTableBody;
-
+	SortableTableBody.defaultProps = {
+	  data: _react.PropTypes.array.isRequired,
+	  columns: _react.PropTypes.array.isRequired,
+	  sortings: _react.PropTypes.array.isRequired
+	};
 
 	SortableTableBody.propTypes = {
 	  columns: _react.PropTypes.array,
 	  data: _react.PropTypes.array
 	};
+
+	exports.default = SortableTableBody;
 
 /***/ },
 /* 166 */
@@ -20438,7 +20353,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SortableTableRow = function SortableTableRow(props) {
+	var SortableTableRow = function SortableTableRow() {
+	  var props = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	  var columns = props.columns;
 	  var data = props.data;
 
