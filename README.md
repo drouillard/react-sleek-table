@@ -1,6 +1,6 @@
-# Sortable Table in React.js
+# React Sleek Table
 
-[![npm version](https://badge.fury.io/js/react-sortable-table.svg)](http://badge.fury.io/js/react-sortable-table)
+[![npm version](https://badge.fury.io/js/react-sleek-table.svg)](http://badge.fury.io/js/react-sleek-table)
 
 # Feature
 
@@ -14,7 +14,7 @@ Please activate Font Awesome. [Get started with Font Awesome](http://fortawesome
 
 # Example
 
-https://rudolph-miller.github.io/react-sortable-table
+https://drouillard.github.io/react-sortable-table
 - ID: default sorting
     - rendered as `<a>` tag.
 - NAME: custom sorting function that sort names by the family name
@@ -23,13 +23,12 @@ https://rudolph-miller.github.io/react-sortable-table
 # Install
 
 ```
-npm install react-sortable-table
+npm install react-sleek-table
 ```
 
 # Usage
 
 ```js
-window.React = require('react');
 import { render } from 'react-dom';
 import React, { Component, PropTypes } from 'react';
 import SortableTable from 'react-sortable-table';
@@ -135,7 +134,9 @@ render(<App />, document.getElementById('app'));
 - columns: React.PropTypes.array.isRequired
 
 # Copyright
+Copyright (c) 2016 Douglas Drouillard(drouillard@gmail.com)
 
+Based on react-sortable-table
 Copyright (c) 2015 Rudolph-Miller (chopsticks.tk.ppfm@gmail.com)
 
 #License

@@ -1,14 +1,14 @@
 {
-  "author": "Rudolph-Miller",
-  "name": "react-sortable-table",
-  "version": "1.3.0",
+  "author": "Douglas Drouillard",
+  "name": "react-sleek-table",
+  "version": "1.0.0",
   "keywords": [
     "react",
     "react-component",
     "table",
     "sortable"
   ],
-  "description": "sortable table component in React.js",
+  "description": "sleek table component in React.js",
   "main": "index.js",
   "scripts": {
     "prepublish": "node_modules/.bin/babel src --out-dir js",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Rudolph-Miller/react-sortable-table"
+    "url": "git://github.com/drouillard/react-sleek-table"
   },
   "dependencies": {
     "react": "^0.14.7"
