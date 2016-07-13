@@ -6,7 +6,7 @@ const SortableTableRow = (props = {}) => {
   const rows = columns.map((item, index) => {
     let value = data[item.key];
     if (item.render) {
-      value = item.render(value);
+      value = item.render(value, data);
     }
 
     return (
