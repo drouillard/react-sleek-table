@@ -1,7 +1,7 @@
 window.React = require('react');
 import { render } from 'react-dom';
 import React, { Component } from 'react';
-import SortableTable from 'react-sortable-table';
+import SleekTable from 'react-sleek-table';
 
 function getFamilyName(name) {
   return name.split(' ').slice(-1)[0];
@@ -81,7 +81,7 @@ class App extends Component {
     };
 
     return (
-      <SortableTable
+      <SleekTable
         data={this.state.data}
         columns={columns}
         style={style}

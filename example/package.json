@@ -1,5 +1,5 @@
 {
-  "name": "react-sortable-table-example",
+  "name": "react-sleek-table-example",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,7 @@
   "dependencies": {
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "react-sortable-table": "file:../"
+    "react-sleek-table": "file:../"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
