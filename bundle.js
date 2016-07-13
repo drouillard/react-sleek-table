@@ -54,9 +54,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactSortableTable = __webpack_require__(159);
+	var _reactSleekTable = __webpack_require__(159);
 
-	var _reactSortableTable2 = _interopRequireDefault(_reactSortableTable);
+	var _reactSleekTable2 = _interopRequireDefault(_reactSleekTable);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -149,7 +149,7 @@
 	        paddingRight: '5px'
 	      };
 
-	      return _react2.default.createElement(_reactSortableTable2.default, {
+	      return _react2.default.createElement(_reactSleekTable2.default, {
 	        data: this.state.data,
 	        columns: columns,
 	        style: style,
@@ -19880,14 +19880,14 @@
 	    }
 	  }, {
 	    key: 'sortData',
-	    value: function sortData(data, sortings) {
+	    value: function sortData(data, columns, sortings) {
 	      var _this3 = this;
 
-	      var sortedData = this.props.data.slice(0);
+	      var sortedData = data.slice(0);
 
 	      sortings.forEach(function (sorting, i) {
-	        var column = _this3.props.columns[i];
-	        var key = _this3.props.columns[i].key;
+	        var column = columns[i];
+	        var key = columns[i].key;
 
 	        switch (sorting) {
 	          case _SortDirection2.default.DESC:
@@ -19953,7 +19953,6 @@
 	    key: 'sortDataByKey',
 	    value: function sortDataByKey(data, key, fn) {
 	      var clone = Array.apply(null, data);
-
 	      return clone.sort(function (a, b) {
 	        return fn(a[key], b[key]);
 	      });
@@ -19979,31 +19978,37 @@
 	      var iconBoth = _props.iconBoth;
 	      var iconDesc = _props.iconDesc;
 	      var iconStyle = _props.iconStyle;
+	      var id = _props.id;
 	      var style = _props.style;
 	      var sortings = this.state.sortings;
 
-	      var sortedData = this.sortData(data, sortings);
+	      var sortedData = this.sortData(data, columns, sortings);
 
 	      return _react2.default.createElement(
-	        'table',
-	        {
-	          className: 'table',
-	          style: style
-	        },
-	        _react2.default.createElement(_SortableTableHeader2.default, {
-	          columns: columns,
-	          sortings: sortings,
-	          onHeaderItemClick: this.handleHeaderItemClick,
-	          iconStyle: iconStyle,
-	          iconDesc: iconDesc,
-	          iconAsc: iconAsc,
-	          iconBoth: iconBoth
-	        }),
-	        _react2.default.createElement(_SortableTableBody2.default, {
-	          columns: columns,
-	          data: sortedData,
-	          sortings: sortings
-	        })
+	        'div',
+	        { className: 'sleek-table table-wrapper' },
+	        _react2.default.createElement(
+	          'table',
+	          {
+	            className: 'table',
+	            style: style,
+	            id: id
+	          },
+	          _react2.default.createElement(_SortableTableHeader2.default, {
+	            columns: columns,
+	            sortings: sortings,
+	            onHeaderItemClick: this.handleHeaderItemClick,
+	            iconStyle: iconStyle,
+	            iconDesc: iconDesc,
+	            iconAsc: iconAsc,
+	            iconBoth: iconBoth
+	          }),
+	          _react2.default.createElement(_SortableTableBody2.default, {
+	            columns: columns,
+	            data: sortedData,
+	            sortings: sortings
+	          })
+	        )
 	      );
 	    }
 	  }]);
@@ -20021,7 +20026,8 @@
 	  iconStyle: _react.PropTypes.object,
 	  iconDesc: _react.PropTypes.node,
 	  iconAsc: _react.PropTypes.node,
-	  iconBoth: _react.PropTypes.node
+	  iconBoth: _react.PropTypes.node,
+	  id: _react.PropTypes.string
 	};
 
 /***/ },
@@ -20133,8 +20139,8 @@
 	  var sorting = props.sorting;
 	  var style = props.style;
 
-
 	  var sortIcon = void 0;
+
 	  if (sortable) {
 	    if (iconBoth) {
 	      sortIcon = iconBoth;
@@ -20359,7 +20365,7 @@
 	  var data = props.data;
 
 
-	  var tds = columns.map(function (item, index) {
+	  var rows = columns.map(function (item, index) {
 	    var value = data[item.key];
 	    if (item.render) {
 	      value = item.render(value);
@@ -20378,7 +20384,7 @@
 	  return _react2.default.createElement(
 	    'tr',
 	    null,
-	    tds
+	    rows
 	  );
 	};
 
