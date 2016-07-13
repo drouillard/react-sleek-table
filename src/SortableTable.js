@@ -32,12 +32,12 @@ export default class SortableTable extends Component {
     });
   }
 
-  sortData(data, sortings) {
-    let sortedData = this.props.data.slice(0);
+  sortData(data, columns, sortings) {
+    let sortedData = data.slice(0);
 
     sortings.forEach((sorting, i) => {
-      const column = this.props.columns[i];
-      const key = this.props.columns[i].key;
+      const column = columns[i];
+      const key = columns[i].key;
 
       switch (sorting) {
         case SortDirection.DESC:
@@ -113,30 +113,33 @@ export default class SortableTable extends Component {
   }
 
   render() {
-    const { data, columns, iconAsc, iconBoth, iconDesc, iconStyle, style } = this.props;
+    const { data, columns, iconAsc, iconBoth, iconDesc, iconStyle, id, style } = this.props;
     const { sortings } = this.state;
-    const sortedData = this.sortData(data, sortings);
+    const sortedData = this.sortData(data, columns, sortings);
 
     return (
-      <table
-        className="table"
-        style={style}
-      >
-        <SortableTableHeader
-          columns={columns}
-          sortings={sortings}
-          onHeaderItemClick={this.handleHeaderItemClick}
-          iconStyle={iconStyle}
-          iconDesc={iconDesc}
-          iconAsc={iconAsc}
-          iconBoth={iconBoth}
-        />
-        <SortableTableBody
-          columns={columns}
-          data={sortedData}
-          sortings={sortings}
-        />
-      </table>
+      <div className="sleek-table table-wrapper">
+        <table
+          className="table"
+          style={style}
+          id={id}
+        >
+          <SortableTableHeader
+            columns={columns}
+            sortings={sortings}
+            onHeaderItemClick={this.handleHeaderItemClick}
+            iconStyle={iconStyle}
+            iconDesc={iconDesc}
+            iconAsc={iconAsc}
+            iconBoth={iconBoth}
+          />
+          <SortableTableBody
+            columns={columns}
+            data={sortedData}
+            sortings={sortings}
+          />
+        </table>
+      </div>
     );
   }
 }
@@ -149,4 +152,5 @@ SortableTable.propTypes = {
   iconDesc: PropTypes.node,
   iconAsc: PropTypes.node,
   iconBoth: PropTypes.node,
+  id: PropTypes.string,
 };
