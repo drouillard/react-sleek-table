@@ -130,15 +130,19 @@ render(<App />, document.getElementById('app'));
 
 # PropTypes
 
-- data: React.PropTypes.array.isRequired
-- columns: React.PropTypes.array.isRequired
+* data: PropTypes.array.isRequired,
+* columns: PropTypes.array.isRequired,
+* style: PropTypes.object,
+* iconStyle: PropTypes.object,
+* iconDesc: PropTypes.node,
+* iconAsc: PropTypes.node,
+* iconBoth: PropTypes.node,
+* id: PropTypes.string,
 
-# Copyright
-Copyright (c) 2016 Douglas Drouillard(drouillard@gmail.com)
+# License
 
-Based on react-sortable-table
-Copyright (c) 2015 Rudolph-Miller (chopsticks.tk.ppfm@gmail.com)
+[MIT Licensed](./LICENSE).
 
-#License
+# Acknowledgements
 
-Licensed under the MIT License.
+Based on [react-sortable-table](https://github.com/Rudolph-Miller/react-sortable-table)
