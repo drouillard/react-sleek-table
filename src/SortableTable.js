@@ -99,7 +99,6 @@ export default class SortableTable extends Component {
 
   sortDataByKey(data, key, fn) {
     const clone = Array.apply(null, data);
-
     return clone.sort((a, b) => (fn(a[key], b[key])));
   }
 

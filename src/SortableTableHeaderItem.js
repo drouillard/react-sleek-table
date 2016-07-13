@@ -5,8 +5,8 @@ import { SortIconBoth, SortIconDesc, SortIconAsc } from './SortIcons';
 const SortableTableHeaderItem = (props = {}) => {
   const { header, iconAsc, iconBoth, iconDesc,
             iconStyle, index, onClick, sortable, sorting, style } = props;
-
   let sortIcon;
+
   if (sortable) {
     if (iconBoth) {
       sortIcon = iconBoth;

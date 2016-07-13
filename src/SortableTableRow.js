@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 const SortableTableRow = (props = {}) => {
   const { columns, data } = props;
 
-  const tds = columns.map((item, index) => {
+  const rows = columns.map((item, index) => {
     let value = data[item.key];
     if (item.render) {
       value = item.render(value);
@@ -22,7 +22,7 @@ const SortableTableRow = (props = {}) => {
 
   return (
     <tr>
-      {tds}
+      {rows}
     </tr>
   );
 };
