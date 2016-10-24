@@ -1,13 +1,17 @@
 {
   "name": "react-sleek-table-example",
   "version": "1.0.0",
-  "description": "",
+  "description": "Example project for React Sleek Table",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   },
-  "author": "Rudolph-Miller",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/drouillard/react-sleek-table"
+  },
+  "author": "Douglas Drouillard",
   "license": "MIT",
   "dependencies": {
     "react": "^0.14.7",
