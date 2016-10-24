@@ -8,7 +8,6 @@ export const FaIcon = (props = {}) => {
     <i
       className={className}
       style={style}
-      align="right"
     />
   );
 };
